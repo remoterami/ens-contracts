@@ -9,6 +9,7 @@ import 'hardhat-abi-exporter'
 import 'hardhat-contract-sizer'
 import 'hardhat-deploy'
 import 'hardhat-gas-reporter'
+import 'hardhat-tracer'
 import { HardhatUserConfig } from 'hardhat/config'
 import { promisify } from 'util'
 
@@ -40,14 +41,15 @@ export const archivedDeploymentPath = './deployments/archive'
 const config: HardhatUserConfig = {
   networks: {
     hardhat: {
-      saveDeployments: false,
+      saveDeployments: true,
       tags: ['test', 'legacy', 'use_root'],
       allowUnlimitedContractSize: false,
     },
     localhost: {
-      url: 'http://127.0.0.1:8545',
-      saveDeployments: false,
+      url: `http://127.0.0.1:${process.env.EL_PORT}`,
+      saveDeployments: true,
       tags: ['test', 'legacy', 'use_root'],
+      gas: 2500000,
     },
     rinkeby: {
       url: `https://rinkeby.infura.io/v3/${process.env.INFURA_API_KEY}`,

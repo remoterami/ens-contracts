@@ -5,13 +5,15 @@
   "scripts": {
     "test": "hardhat test",
     "test:local": "hardhat --network localhost test",
-    "test:deploy": "hardhat --network hardhat deploy",
+    "test:deploy": "hardhat --network hardhat deploy --write true",
     "lint": "hardhat check",
     "build": "rm -rf ./build/deploy ./build/hardhat.config.js && hardhat compile && tsc",
     "format": "prettier --write .",
     "prepublishOnly": "yarn build",
     "pub": "yarn publish --access public",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "registerTest": "hardhat run --network localhost scripts/registerExample.js",
+    "registerTestHardhat": "hardhat run scripts/registerExample.js"
   },
   "files": [
     "build",
@@ -58,7 +60,8 @@
     "@ensdomains/buffer": "^0.1.1",
     "@ensdomains/solsha1": "0.0.3",
     "@openzeppelin/contracts": "^4.1.0",
-    "dns-packet": "^5.3.0"
+    "dns-packet": "^5.3.0",
+    "hardhat-tracer": "^2.6.0"
   },
   "directories": {
     "test": "test"
